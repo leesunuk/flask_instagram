@@ -8,7 +8,7 @@ from marshmallow import ValidationError
 
 from .db import db
 from .ma import ma
-from .models import user
+from .models import user, post, comment
 
 def create_app():
     app = Flask(__name__)
