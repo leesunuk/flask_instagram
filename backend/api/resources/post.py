@@ -44,7 +44,12 @@ class Post(Resource):
 class PostList(Resource):
     @classmethod
     def get(cls):
-        return {"posts" : post_list_schema.dump(PostModel.find_all())}, 200
+        page = request.args.get("page", type=int, default=1)
+        orderd_posts = PostModel.query.order_by(PostModel.id.desc())
+        pagination = orderd_posts.paginate(page, per_page=10, error_out=False)
+        result = post_list_schema.dump(pagination.items)
+        return result
+        # return {"posts" : post_list_schema.dump(PostModel.find_all())}, 200
     
     @classmethod
     def post(cls):

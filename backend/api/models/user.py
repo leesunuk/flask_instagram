@@ -12,7 +12,7 @@ class UserModel(db.Model):
     
     id = db.Column(db.Integer, primary_key=True) # 기본 키
     username = db.Column(db.String(80), nullable=False, unique=True) # 80자 제한, 중복 X, 필수
-    password = db.Column(db.String(80), nullable=False) # 80자 제한, 필수
+    password = db.Column(db.String(102), nullable=False) # 80자 제한, 필수
     email = db.Column(db.String(80), nullable=False, unique=True) # 중복 X, 필수
     created_at = db.Column(db.DateTime, server_default=db.func.now()) # 가입 날짜
 
@@ -43,6 +43,9 @@ class UserModel(db.Model):
     def find_by_username(cls, username): # db에서 이름으로 사용자 찾기
 
         return cls.query.filter_by(username=username).first()
+    @classmethod
+    def find_by_email(cls, email):
+        return cls.query.filter_by(email=email).first()
     
     @classmethod
     def find_by_id(cls, id): # db에서 id 로 사용자 찾기   
