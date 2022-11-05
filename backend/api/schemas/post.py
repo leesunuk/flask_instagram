@@ -12,8 +12,9 @@ class PostSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = PostModel
         dump_only = ["author_name",] #읽기 전용
-        load_only = ["author_id",] #쓰기 전용
+        # load_only = ["author_id",] #쓰기 전용
         
+        exclude = ("author_id",)
         include_fk = True
         load_instance = True
         ordered = True

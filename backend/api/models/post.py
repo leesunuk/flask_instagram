@@ -22,6 +22,8 @@ class PostModel(db.Model):
     @classmethod
     def find_all(cls):
         return cls.query.all()
+    
+    
 
     def save_to_db(self): # 저장
         db.session.add(self)
@@ -29,6 +31,11 @@ class PostModel(db.Model):
 
     def delete_from_db(self): #삭제
         db.session.delete(self)
+        db.session.commit()
+        
+    def update_to_db(self, data):
+        for key, value in data.items():
+            setattr(self, key, value)
         db.session.commit()
 
     def __repr__(self):
