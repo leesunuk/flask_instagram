@@ -14,6 +14,7 @@ class PostModel(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey("User.id", ondelete="CASCADE"), nullable=False) # 글쓴이, 외래키, 외래키가 삭제되면 글이 같이 삭제됨, 필수
     author = db.relationship("UserModel", backref="post_author") 
     comment_set = db.relationship("CommentModel", backref="post", passive_deletes=True) # 댓글
+    image = db.Column(db.String(255)) #프로필 사진 경로 저장
 
     @classmethod
     def find_by_id(cls, id): # id로 검색

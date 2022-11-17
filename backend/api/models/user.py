@@ -15,6 +15,7 @@ class UserModel(db.Model):
     password = db.Column(db.String(102), nullable=False) # 80자 제한, 필수
     email = db.Column(db.String(80), nullable=False, unique=True) # 중복 X, 필수
     created_at = db.Column(db.DateTime, server_default=db.func.now()) # 가입 날짜
+    image = db.Column(db.String(255)) #프로필 사진 경로 저장
 
     followed = db.relationship(                             # 본인이 팔로우한 유저들
         'UserModel',                                        # User 모델 스스로를 참조

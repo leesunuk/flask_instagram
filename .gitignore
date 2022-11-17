@@ -1,2 +1,3 @@
 /backend/venv/
 /__pycache__/
+/frontend/server/node_modules/
